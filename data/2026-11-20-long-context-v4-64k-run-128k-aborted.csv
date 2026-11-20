@@ -1,0 +1,2 @@
+Date;Modele;ContexteDemande;ContexteReelOllama;Essai;TokensEstimesTiktoken;PromptEvalCountOllama;TokensSortie;BonnesCles;ClesTotales;TempsTotalSecondes;DureeServeurSecondes;RAMLibreMiniMiB;VRAMPicMiB;SortieCode;Erreur;Reponse
+2026-11-20T21:25:34;MoE64K;65536;65536;1;85085;32770;136;2;5;56.41;50.95;6193;15908;0;;D:\IA\Benchmarks\LongContexteV4-64K-128K-20261120-212421\MoE64K-essai-01-reponse.json
