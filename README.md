@@ -91,6 +91,21 @@ Même modèle MoE Q4 et même application Python, avec le protocole automatisé 
 
 Source : [CSV brut du 20 novembre — MoE 16K vs 32K](data/2026-11-20-moe-16k-vs-32k.csv).
 
+### MoE 32K contre 64K — Préfa complexe V2 (20 novembre 2026)
+
+Essais réalisés automatiquement sur **SUPER-PC** (RTX 4060 Ti 16 Go, 32 Go RAM), même projet Python V2 et même agent. Un passage par configuration, dans l'ordre 32K puis 64K.
+
+| Configuration | Temps agent | Premier passage | Tests finaux | Relances | Tokens rapportés, max. |
+|---|---:|---:|---:|---:|---:|
+| MoE 32K | 505,14 s | **40/40** | **61/61** | 0 | 28 796 |
+| MoE 64K | **362,36 s** | **40/40** | **61/61** | 0 | 29 277 |
+
+Sur cet essai, le **64K termine 142,78 secondes plus tôt** (environ **28,3 % de temps en moins**). Cependant, la valeur maximale de tokens rapportée (**29 277**) reste **inférieure à 32 768**, ce qui **ne démontre aucun bénéfice dû à la capacité supplémentaire** de la fenêtre 64K. Les différences de nombre de tokens générés et d'actions peuvent expliquer une partie de l'écart. Il faudrait plusieurs essais, alternés, et une tâche qui dépasse réellement 32K pour conclure.
+
+**Mémoire** : minimum de RAM libre échantillonné **4 329 Mo à 32K**, **3 491 Mo à 64K** ; pic VRAM échantillonné **15 952 MiB** vs **15 934 MiB**. Ces mesures sont des échantillons, non des maxima garantis, et la RAM à 64K laisse peu de marge.
+
+[CSV brut de cette campagne](data/2026-11-20-prefa-complex-v2-moe-32k-vs-64k.csv).
+
 ## Méthode de mesure
 
 1. Extraction d'une **copie neuve** pour chaque essai.
