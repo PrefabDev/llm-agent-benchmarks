@@ -72,11 +72,13 @@ Le mécanisme de relance v1.3 a changé la définition de « réussite » : dist
 
 ## Scripts
 
+- [Projet Python initial, avec les sept échecs](benchmark/prefa-panel/README.md) : codes sources et tests de référence.
+- [Générer l'archive ZIP compatible](scripts/Creer-Archive-Benchmark.ps1) : reconstruit l'archive identique pour les deux candidats à partir des sources publiées.
 - [Benchmark OpenCode v1.3](scripts/Benchmark-OpenCode-LLM-v1.3.ps1) : comparaison 14B / MoE 16K, relances bornées.
 - [Benchmark MoE 16K vs 32K](scripts/Benchmark-MoE-16K-vs-32K.ps1) : **expérimental**, préparation effectuée mais pas de série de résultats publiée.
 - [Ajout de l'alias 32K à OpenCode](scripts/Ajouter-MoE32K-OpenCode.ps1).
 
-**Pré-requis** : Windows / PowerShell 5.1, Python 3, Ollama, OpenCode, modèles déjà installés, archive de projet `Benchmark_PREFA_14B_vs_MoE.zip` dans `D:\IA\Tests`. Ces scripts contiennent des **chemins locaux à adapter** ; ne les utilisez pas sans les relire.
+**Pré-requis** : Windows / PowerShell 5.1, Python 3, Ollama, OpenCode, modèles déjà installés, archive de projet `Benchmark_PREFA_14B_vs_MoE.zip` dans `D:\IA\Tests`. Depuis la racine du dépôt, lancer d'abord `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Creer-Archive-Benchmark.ps1` pour préparer l'archive. Puis adapter les chemins et paramètres des scripts aux installations locales. **Relire les scripts avant exécution**.
 
 > ⚠️ `--auto` / `-AutoApprove` : l'agent peut exécuter des commandes et modifier des fichiers. **Un dossier de benchmark n'est pas un bac à sable de sécurité.** Exécuter uniquement sur une machine de confiance, avec des données non sensibles et idéalement dans une VM isolée.
 
