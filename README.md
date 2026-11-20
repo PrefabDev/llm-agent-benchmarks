@@ -24,6 +24,19 @@ Départ : **15 tests unitaires, 8 réussites et 7 échecs**, provoqués par quat
 
 ## Résultats mesurés
 
+### Nouveau — Projet complexe V2 : MoE 16K contre 32K (20 novembre 2026)
+
+Deux essais sur une application Python de **30 fichiers**, avec **40 tests visibles** et **21 tests indépendants** :
+
+| MoE | Temps agent | Premier passage | Fin | Relances | Max. tokens rapportés |
+|---|---:|---:|---:|---:|---:|
+| 16K | 986,56 s | **40/40** | **61/61** | 0 | 16 384 |
+| 32K | **613,84 s** | 22/40 | **61/61** | 1 | 28 972 |
+
+**32K a terminé 37,8 % plus vite sur ce seul essai**, mais 16K a travaillé sans relance. **Ce n'est pas une conclusion statistique** sur la supériorité de l'une ou l'autre fenêtre.
+
+Lire le [rapport V2 détaillé](reports/2026-11-20-prefa-complex-v2-16k-vs-32k.md) et le [CSV d'origine](data/2026-11-20-prefa-complex-v2-moe-16k-vs-32k.csv).
+
 ### Série initiale automatisée — 19 novembre 2026, protocole v1.1
 
 | Modèle | Temps agent | Tests finaux | Statut |
