@@ -106,6 +106,17 @@ Sur cet essai, le **64K termine 142,78 secondes plus tôt** (environ **28,3 % de
 
 [CSV brut de cette campagne](data/2026-11-20-prefa-complex-v2-moe-32k-vs-64k.csv).
 
+### V3 — Test contrôlé de long contexte : 32K vs 64K
+
+**Résultat sur trois paires** : pour une même requête avec **48 920 tokens évalués en 64K**, les cinq clés ont été retrouvées en 64K (**5/5**) contre seulement deux en 32K (**2/5**). Le 64K a été **~2,9× plus lent** (82,24 s contre 28,20 s en moyenne).
+
+| Configuration | Exactitude | Durée moyenne | `prompt_eval_count` Ollama |
+|---|---:|---:|---:|
+| MoE 32K | 2/5 | **28,20 s** | 16 386 |
+| MoE 64K | **5/5** | 82,24 s | **48 920** |
+
+**Il s'agit d'un benchmark de récupération de faits dans Ollama, pas d'un agent OpenCode**. Voir le [rapport V3 et ses limites](reports/2026-11-20-long-context-v3-32k-vs-64k.md) et le [script reproductible](scripts/Benchmark-LongContexte-32K-vs-64K.py).
+
 ## Méthode de mesure
 
 1. Extraction d'une **copie neuve** pour chaque essai.
