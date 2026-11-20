@@ -11,8 +11,8 @@ Benchmarks **locaux, orientés tâche**, pour comparer des modèles de code util
 - **RAM** : 32 Go.
 - **Système** : Windows, PowerShell 5.1.
 - **Moteurs** : Ollama + OpenCode 1.19.5.
-- **Modèles** : `qwen3-opencode` (Qwen3 14B, variante locale) et `qwen36-moe:16k` (Qwen3.6 35B-A3B MoE, GGUF Q4).
-- **Contexte comparé dans les séries publiées** : **16 384 tokens**. Les essais **32K** sont préparés mais **non publiés comme résultats**.
+- **Modèles** : `qwen3-opencode` (Qwen3 14B, variante locale) et `qwen36-moe:16k` / `qwen36-moe:32k` (Qwen3.6 35B-A3B MoE, GGUF Q4).
+- **Contexte** : comparaisons 14B / MoE 16K à **16 384 tokens** ; premier essai MoE **16 384 vs 32 768 tokens** publié ci-dessous.
 
 ## Tâche métier de test
 
@@ -58,6 +58,26 @@ Le **facteur 5,61×** (827,19 / 147,36) concerne **uniquement l'essai v1.3 du so
 
 Sources : [CSV v1.3 matin](data/2026-11-20-v1.3-matin.csv) · [CSV v1.3 soir](data/2026-11-20-v1.3-soir.csv).
 
+### MoE 16K contre 32K — 20 novembre 2026 (premier essai)
+
+Même modèle MoE Q4 et même application Python, avec le protocole automatisé à relances bornées. Les deux contextes demandés ont été confirmés par Ollama lors du préchauffage.
+
+| Critère | MoE 16K | MoE 32K |
+|---|---:|---:|
+| Contexte Ollama configuré | 16 384 | **32 768** |
+| Temps agent (hors préchauffage) | 219,10 s | **185,66 s** |
+| Tests au premier passage | **15/15** | 8/15 |
+| Tests finaux | **15/15** | **15/15** |
+| Relances automatiques | **0** | 1 |
+| Préchauffage | 14,34 s | 14,28 s |
+| VRAM rapportée par Ollama au chargement | 13 501 Mo | 13 373 Mo |
+| RAM libre au préchauffage | 10 374 Mo | 11 683 Mo |
+| Fréquence GPU instantanée pré-test | 2 595 MHz | 2 595 MHz |
+
+**Observations** : dans cet essai, le 32K a pris **33,44 s de moins** (environ **15,3 %**) mais **n'a pas réussi au premier passage**. Le 16K a réussi immédiatement. L'usage de la fenêtre complète de 32K **n'est pas démontré** par la seule valeur configurée. Les relevés de VRAM, RAM et GPU sont des instantanés et ne mesurent ni les pics ni les moyennes pendant l'inférence. **Un seul essai, dans l'ordre 16K puis 32K, ne suffit pas à conclure** que le 32K est plus rapide ou moins gourmand.
+
+Source : [CSV brut du 20 novembre — MoE 16K vs 32K](data/2026-11-20-moe-16k-vs-32k.csv).
+
 ## Méthode de mesure
 
 1. Extraction d'une **copie neuve** pour chaque essai.
@@ -75,7 +95,7 @@ Le mécanisme de relance v1.3 a changé la définition de « réussite » : dist
 - [Projet Python initial, avec les sept échecs](benchmark/prefa-panel/README.md) : codes sources et tests de référence.
 - [Générer l'archive ZIP compatible](scripts/Creer-Archive-Benchmark.ps1) : reconstruit l'archive identique pour les deux candidats à partir des sources publiées.
 - [Benchmark OpenCode v1.3](scripts/Benchmark-OpenCode-LLM-v1.3.ps1) : comparaison 14B / MoE 16K, relances bornées.
-- [Benchmark MoE 16K vs 32K](scripts/Benchmark-MoE-16K-vs-32K.ps1) : **expérimental**, préparation effectuée mais pas de série de résultats publiée.
+- [Benchmark MoE 16K vs 32K](scripts/Benchmark-MoE-16K-vs-32K.ps1) : script expérimental ; premier essai chronométré publié.
 - [Ajout de l'alias 32K à OpenCode](scripts/Ajouter-MoE32K-OpenCode.ps1).
 
 **Pré-requis** : Windows / PowerShell 5.1, Python 3, Ollama, OpenCode, modèles déjà installés, archive de projet `Benchmark_PREFA_14B_vs_MoE.zip` dans `D:\IA\Tests`. Depuis la racine du dépôt, lancer d'abord `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Creer-Archive-Benchmark.ps1` pour préparer l'archive. Puis adapter les chemins et paramètres des scripts aux installations locales. **Relire les scripts avant exécution**.
@@ -86,7 +106,7 @@ Le mécanisme de relance v1.3 a changé la définition de « réussite » : dist
 
 - Déterminisme imparfait des agents : un même prompt peut mener à une réponse sans modification du code.
 - Comparaisons sensibles au mode interactif/non interactif, à la compaction, à la charge CPU/GPU et aux paramètres mémoire.
-- Pas de résultat 32K encore validé : un contexte maximal annoncé ne prouve pas qu'il a été effectivement utilisé.
+- Un seul essai 16K / 32K : fenêtre configurée confirmée, mais contexte réellement consommé non mesuré ; répéter en alternant l'ordre.
 - À faire : essais supplémentaires, chronométrage robuste, relevés continus RAM/VRAM, tâches inédites avec tests cachés.
 
 **Licence :** aucune licence de réutilisation n'est encore accordée ; choix à définir avant diffusion des scripts comme projet open source.
