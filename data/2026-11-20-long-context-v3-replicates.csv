@@ -1,0 +1,5 @@
+Date;Modele;ContexteDemande;ContexteReelOllama;Essai;TokensEstimesTiktoken;PromptEvalCountOllama;TokensSortie;BonnesCles;ClesTotales;TempsTotalSecondes;DureeServeurSecondes;RAMLibreMiniMiB;VRAMPicMiB;SortieCode;Erreur;Reponse
+2026-11-20T21:10:46;MoE32K;32768;32768;1;43911;16386;136;2;5;28.19;24.11;7736;15688;0;;D:\IA\Benchmarks\LongContexteV3-20261120-211001\MoE32K-essai-01-reponse.json
+2026-11-20T21:12:20;MoE64K;65536;65536;1;43911;48920;131;5;5;77.58;76.54;7071;15725;0;;D:\IA\Benchmarks\LongContexteV3-20261120-211001\MoE64K-essai-01-reponse.json
+2026-11-20T21:14:02;MoE64K;65536;65536;2;43911;48920;131;5;5;84.55;77.61;7086;15829;0;;D:\IA\Benchmarks\LongContexteV3-20261120-211001\MoE64K-essai-02-reponse.json
+2026-11-20T21:14:48;MoE32K;32768;32768;2;43911;16386;136;2;5;28.2;24.74;7571;15803;0;;D:\IA\Benchmarks\LongContexteV3-20261120-211001\MoE32K-essai-02-reponse.json
