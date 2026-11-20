@@ -24,6 +24,23 @@ Départ : **15 tests unitaires, 8 réussites et 7 échecs**, provoqués par quat
 
 ## Résultats mesurés
 
+### Dernière expérience : 64K contre 128K (V4, résultat partiel)
+
+**Test du 20 novembre 2026 :** création et chargement confirmés de l'alias Ollama `qwen36-moe:128k` (131 072 tokens configurés). Le benchmark V4 utilise **679 fiches de préfabrication** (~85K tokens estimés) pour rechercher cinq valeurs à différents endroits du contexte.
+
+| Mesure | 64K | 128K |
+|---|---:|---:|
+| Contexte annoncé par Ollama | 65 536 | **131 072** |
+| RAM libre après préchauffage | 6 793 Mio | 5 665 Mio |
+| Exécution du prompt | Oui | **Non : arrêt préventif RAM** |
+| Exactitude | 2/5 | **Non mesurée** |
+
+**Le 128K n'a pas encore été benchmarké en inférence** : le script exigeait au moins 7 000 Mio de RAM libre après préchauffage. Ne pas annoncer de gain ni de performance 128K.
+
+Voir [rapport V4](reports/2026-11-20-long-context-v4-64k-vs-128k-partial.md) · [script V4](scripts/Benchmark-LongContexte-64K-vs-128K.py).
+
+
+
 ### Nouveau — Projet complexe V2 : MoE 16K contre 32K (20 novembre 2026)
 
 Deux essais sur une application Python de **30 fichiers**, avec **40 tests visibles** et **21 tests indépendants** :
