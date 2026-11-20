@@ -1,0 +1,3 @@
+"DateDebut";"Modele";"IdModele";"Essai";"TempsAgentSecondes";"PrechauffageSecondes";"Fin";"TestsAvant";"EchecsAvant";"TestsApres";"EchecsApres";"ErreursApres";"TestsTousOK";"TestsIntacts";"ReadmeIntact";"CodeSortieAgent";"Timeout";"Resultat";"GpuAvant";"Dossier"
+"2026-11-19T23:43:47";"14B";"ollama/qwen3-opencode";"1";"284,78";"5,25";"2026-11-19T23:48:32";"15";"7";"15";"5";"0";"False";"False";"True";"0";"False";"ECHEC";"67, 13394, 46.75, 51.06";"D:\IA\Benchmarks\20261119-234339-44a01d\14B-essai-01"
+"2026-11-19T23:48:53";"MoE";"ollama/qwen36-moe:16k";"1";"252,86";"16,26";"2026-11-19T23:53:05";"15";"7";"15";"0";"0";"True";"False";"True";"0";"False";"TESTS_MODIFIES";"77, 15544, 43.08, 29.86";"D:\IA\Benchmarks\20261119-234339-44a01d\MoE-essai-01"
